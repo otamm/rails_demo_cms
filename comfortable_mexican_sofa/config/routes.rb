@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   comfy_route :cms, :path => '/', :sitemap => false
 
   # Add homepage
-  root :to => "comfy/cms/content#show"
+  # root :to => "comfy/cms/content#show"
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

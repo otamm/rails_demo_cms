@@ -92,7 +92,7 @@ First of all, it is needed to create a layout. It will add some basic tags to th
 #####Identifier: an identifier associated with the layout, to be selected from the drop-down box that will be available when creating a new page to associate that new page with the layout.
 #####App Layout: The 'de facto' overall app's layout, edited in the app project itself (not in the CMS). Displays all the files under '/app/views/layouts' as an option. The content rendered through the customized CMS layout is rendered in the <%= yield %> space.
 #####Content: see 3.Layout Structure below
-#####Stylesheet: 
+#####Stylesheet: Define stylesheets here; not very useful since these can be customized in a text editor.
 
 #### Layout structure
 
