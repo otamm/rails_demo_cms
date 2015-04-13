@@ -7,6 +7,8 @@
 gem 'comfortable_mexican_sofa' 1.12.8
 ```
 
+Details: https://github.com/comfy/comfortable-mexican-sofa/releases
+
 ##Install dependencies:
 
 ##### auto:
@@ -74,9 +76,25 @@ ComfortableMexicanSofa::HttpAuth.password = 'password' # Initially at line 100
 
 Since these are freely displayed, it is important to add the gem's configuration file to the .gitignore file before sending the app to production mode with the final username and password.
 
+## Main Generators (extracted from official documentation, to be used after content is created inside cms):
+
+rails g comfy:cms:views - copy all cms view templates to your application. Now you can change if you want wysiwyg or normal text for snippets yourself. It's back to plain text by default, by the way.
+rails g comfy:cms:controllers - copy all cms controllers to your application.
+rails g comfy:cms:models - copy all cms models to your application.
+rails g comfy:cms:assets - copy all cms js, css and image files to your application.
+
 ## Content Creation
 
-### Pagination Elements
+### Layout
+First of all, it is needed to create a layout. It will add some basic tags to the content and also display a box for each specific layout division when a page is created under that layout. The form for the layout is the following:
+
+#####Layout Name: a name to be associated and displayed when searching through the created layouts in the CMS.
+#####Identifier: an identifier associated with the layout, to be selected from the drop-down box that will be available when creating a new page to associate that new page with the layout.
+#####App Layout: The 'de facto' overall app's layout, edited in the app project itself (not in the CMS). Displays all the files under '/app/views/layouts' as an option. The content rendered through the customized CMS layout is rendered in the <%= yield %> space.
+#####Content: see 3.Layout Structure below
+#####Stylesheet: 
+
+#### Layout structure
 
 ####0. Paperclip's Setup
 Install imagemagick using Homebrew:
