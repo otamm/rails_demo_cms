@@ -53,7 +53,7 @@ rails generate comfy:cms
 rake db:migrate
 ```
 
-####2. See generated migrations at the bottom of the file.
+#### See generated migrations at db/migrate in detail to have an idea of how is Comfy's overall modeling.
 
 These will generate an initializer file (inside config/initializers), migration files, CMS fixtures and routing sets.
 
@@ -77,12 +77,13 @@ ComfortableMexicanSofa::HttpAuth.password = 'password' # Initially at line 100
 Since these are freely displayed, it is important to add the gem's configuration file to the .gitignore file before sending the app to production mode with the final username and password.
 
 ## Main Generators (extracted from official documentation, to be used after content is created inside cms):
-
-rails g comfy:cms:views - copy all cms view templates to your application. Now you can change if you want wysiwyg or normal text for snippets yourself. It's back to plain text by default, by the way.
-rails g comfy:cms:controllers - copy all cms controllers to your application.
-rails g comfy:cms:models - copy all cms models to your application.
-rails g comfy:cms:assets - copy all cms js, css and image files to your application.
-
+```ruby
+rails g comfy:cms:views # copy all cms view templates to your application. Now you can change if you want wysiwyg or normal text for snippets yourself. It's back to plain text by default, by the way.
+rails g comfy:cms:controllers # copy all cms controllers to your application.
+rails g comfy:cms:models # copy all cms models to your application.
+rails g comfy:cms:assets # copy all cms js, css and image files to your application.
+```
+Running these generators will not only enable customization of both content rendered and admin pannel, but will also allow for customizing validations in model and making a local backup of the website's content.
 ## Content Creation
 
 ### Layout
@@ -161,59 +162,3 @@ Post.page(params[:page]).order('created_at DESC')
 ```
 
 will_paginate's styling: http://mislav.uniqpath.com/will_paginate/
-
-####2. Migration results
-== 20150413152513 CreateCms: migrating ========================================
--- create_table(:comfy_cms_sites)
-   -> 0.0216s
--- add_index(:comfy_cms_sites, :hostname)
-   -> 0.0008s
--- add_index(:comfy_cms_sites, :is_mirrored)
-   -> 0.0011s
--- create_table(:comfy_cms_layouts)
-   -> 0.0012s
--- add_index(:comfy_cms_layouts, [:parent_id, :position])
-   -> 0.0006s
--- add_index(:comfy_cms_layouts, [:site_id, :identifier], {:unique=>true})
-   -> 0.0011s
--- create_table(:comfy_cms_pages)
-   -> 0.0011s
--- add_index(:comfy_cms_pages, [:site_id, :full_path])
-   -> 0.0006s
--- add_index(:comfy_cms_pages, [:parent_id, :position])
-   -> 0.0011s
--- create_table(:comfy_cms_blocks)
-   -> 0.0008s
--- add_index(:comfy_cms_blocks, [:identifier])
-   -> 0.0006s
--- add_index(:comfy_cms_blocks, [:blockable_id, :blockable_type])
-   -> 0.0011s
--- create_table(:comfy_cms_snippets)
-   -> 0.0010s
--- add_index(:comfy_cms_snippets, [:site_id, :identifier], {:unique=>true})
-   -> 0.0007s
--- add_index(:comfy_cms_snippets, [:site_id, :position])
-   -> 0.0009s
--- create_table(:comfy_cms_files)
-   -> 0.0009s
--- add_index(:comfy_cms_files, [:site_id, :label])
-   -> 0.0005s
--- add_index(:comfy_cms_files, [:site_id, :file_file_name])
-   -> 0.0010s
--- add_index(:comfy_cms_files, [:site_id, :position])
-   -> 0.0012s
--- add_index(:comfy_cms_files, [:site_id, :block_id])
-   -> 0.0011s
--- create_table(:comfy_cms_revisions, {:force=>true})
-   -> 0.0005s
--- add_index(:comfy_cms_revisions, [:record_type, :record_id, :created_at], {:name=>"index_cms_revisions_on_rtype_and_rid_and_created_at"})
-   -> 0.0005s
--- create_table(:comfy_cms_categories, {:force=>true})
-   -> 0.0012s
--- add_index(:comfy_cms_categories, [:site_id, :categorized_type, :label], {:unique=>true, :name=>"index_cms_categories_on_site_id_and_cat_type_and_label"})
-   -> 0.0010s
--- create_table(:comfy_cms_categorizations, {:force=>true})
-   -> 0.0006s
--- add_index(:comfy_cms_categorizations, [:category_id, :categorized_type, :categorized_id], {:unique=>true, :name=>"index_cms_categorizations_on_cat_id_and_catd_type_and_catd_id"})
-   -> 0.0006s
-== 20150413152513 CreateCms: migrated (0.0455s) ===============================
