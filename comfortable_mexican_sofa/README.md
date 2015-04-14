@@ -84,6 +84,8 @@ rails g comfy:cms:models # copy all cms models to your application.
 rails g comfy:cms:assets # copy all cms js, css and image files to your application.
 ```
 Running these generators will not only enable customization of both content rendered and admin pannel, but will also allow for customizing validations in model and making a local backup of the website's content.
+#### 2. Important to remember that comfy uses HAML, not ERB to render elements in HTML. See the bottom of the page to have an idea of HAML's usage.
+
 ## Content Creation
 
 ### Layout
@@ -162,3 +164,107 @@ Post.page(params[:page]).order('created_at DESC')
 ```
 
 will_paginate's styling: http://mislav.uniqpath.com/will_paginate/
+
+####2. HAML vs ERB
+
+#####ERB:
+```ruby
+<strong><%= item.title %></strong>
+```
+
+#####HAML:
+```ruby
+%strong= item.title
+```
+
+"In Haml, we write a tag by using the percent sign and then the name of the tag. This works for %strong, %div, %body, %html; any tag you want. Then, after the name of the tag is =, which tells Haml to evaluate Ruby code to the right and then print out the return value as the contents of the tag. Unlike the ERB above, Haml will automatically detect newlines in the return value and format the tag properly."
+
+#####HTML:
+```html
+<strong class="code" id="message">Hello, World!</strong>
+```
+#####HAML:
+```ruby
+%strong{:class => "code", :id => "message"} Hello, World!
+```
+"The attributes are just a standard Ruby hash. The class attribute is “code”, the id attribute is “message”. Notice that in this example, we didn’t use =, so “Hello, World!” is interpreted as a normal string, not Ruby code.
+There is an easier way to define this tag in Haml, since class and id are such common attributes and since most designers (and developers) are familiar with CSS, we can use similar notation to describe this tag:"
+
+#####HAML:
+
+```ruby
+%strong.code#message Hello, World!
+```
+
+"Not only that, but since div tags are so common, you can leave off the tag definition and have it default to %div."
+
+#####HTML:
+```html
+<div class='content'>Hello, World!</div>
+```
+
+#####HAML:
+```ruby
+.content Hello, World!
+```
+
+Nesting code inside HTML attributes:
+
+#####ERB:
+```ruby
+<div class='item' id='item<%= item.id %>'>
+  <%= item.body %>
+</div>
+```
+
+#####HAML:
+```ruby
+.item{:id => "item#{item.id}"}= item.body
+```
+
+Nesting HTML tags:
+
+#####ERB:
+```ruby
+<div id='content'>
+  <div class='left column'>
+    <h2>Welcome to our site!</h2>
+    <p><%= print_information %></p>
+  </div>
+  <div class="right column">
+    <%= render :partial => "sidebar" %>
+  </div>
+</div>
+
+```
+
+#####HAML:
+```ruby
+#content
+  .left.column
+    %h2 Welcome to our site!
+    %p= print_information
+  .right.column
+    = render :partial => "sidebar"
+```
+
+And, finally, rendering code blocks:
+
+#####ERB:
+```ruby
+<% (42...47).each do |i| %>
+  <p><%= i.to_s %></p>
+<% end %>
+<p>See, I can count!</p>
+
+```
+
+#####HAML:
+```ruby
+- (42...47).each do |i|
+  %p= i
+%p See, I can count!
+```
+
+As you can see, HAML does not need to be closed. Make an analogy with Python syntax.
+Official HAML documentation: http://haml.info/docs/yardoc/file.REFERENCE.html
