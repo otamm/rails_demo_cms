@@ -51,7 +51,7 @@ So '{{ }}' are "output code" tags and '{% %}' are "background page logic" tags. 
 
 ## Initial Configuration & Basic Understanding of Generated Resources
 The app's main configuration is under './config', of course. The configuration files are all YAML files, the main file being 'site.yml' . Each individual configuration option is well explained there, so I'll jump to how to use the configuration in the view pages.
-Take the 'name:', for instance. If you go to 'app/views/pages/index.liquid', you'll notice that inside of the <title> HTML tags there's this LiquidMarkup code snippet:
+Take the 'name:' attribute, for instance. If you go to 'app/views/pages/index.liquid', you'll notice that inside of the ```html<title>``` HTML tags there's this LiquidMarkup code snippet:
 ```ruby
 <title>{{ page.title }} | {{ site.name }}</title>
 ```
@@ -70,7 +70,7 @@ Also, note the '{{ 'main.css' | stylesheet_tag }}'. This will point to './public
 
 The second filter is the image's. It points to './public/images/logo.jpg' and is inside a div with a "#logo" id, being affected by whatever is specified in 'main.css' about the #logo.
 
-After that theres the "{% block 'main' %}" which renders the specific page's content, more or less equivalent to the default '<%= yield %>' ERB statement present in the body of a regular layout in a Rails app. Note also that in Liquid the specific content is rendered by a block itself (not by a yielded external block) and instead of the regular "end" to close a block in Ruby, this block is closed by a "{% endblock %}" statement. In Liquid, "a block tag is supposed to contain code to be overwritten by a child template".
+After that there's the "{% block 'main' %}" which renders the specific page's content, more or less equivalent to the default '<%= yield %>' ERB statement present in the body of a regular layout in a Rails app. Note also that in Liquid the specific content is rendered by a block itself (not by a yielded external block) and instead of the regular "end" to close a block in Ruby, this block is closed by a "{% endblock %}" statement. In Liquid, "a block tag is supposed to contain code to be overwritten by a child template".
 
 The {% editable_text %} tag indicates a text passage that can be edited from the app's back office; so, for example, instead of asking a developer to edit the fixed text inside the page's template, a non-technical website editor can edit this passage him/herself.
 
