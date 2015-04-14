@@ -51,7 +51,7 @@ So '{{ }}' are "output code" tags and '{% %}' are "background page logic" tags. 
 
 ## Initial Configuration & Basic Understanding of Generated Resources
 The app's main configuration is under './config', of course. The configuration files are all YAML files, the main file being 'site.yml' . Each individual configuration option is well explained there, so I'll jump to how to use the configuration in the view pages.
-Take the 'name:' attribute, for instance. If you go to 'app/views/pages/index.liquid', you'll notice that inside of the ```html<title>``` HTML tags there's this LiquidMarkup code snippet:
+Take the 'name:' attribute, for instance. If you go to 'app/views/pages/index.liquid', you'll notice that inside of the ```<title>``` HTML tags there's this LiquidMarkup code snippet:
 ```ruby
 <title>{{ page.title }} | {{ site.name }}</title>
 ```
