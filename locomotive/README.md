@@ -44,7 +44,7 @@ Liquid is another code-rendering-in-html such as ERB and HAML. It is a dependenc
 ```
 So '{{ }}' are "output code" tags and '{% %}' are "background page logic" tags. See this repo's 'app/views/pages/index.liquid' for a more complete demonstration. Liquid's official website: http://liquidmarkup.org/
 
-## Initial Configuration
+## Initial Configuration & Basic Understanding of Generated Resources
 The app's main configuration is under './config', of course. The configuration files are all YAML files, the main file being 'site.yml' . Each individual configuration option is well explained there, so I'll jump to how to use the configuration in the view pages.
 Take the 'name:', for instance. If you go to 'app/views/pages/index.liquid', you'll notice that inside of the <title> HTML tags there's this LiquidMarkup code snippet:
 ```ruby
@@ -69,5 +69,29 @@ After that theres the "{% block 'main' %}" which renders the specific page's con
 
 The {% editable_text %} tag indicates a text passage that can be edited from the app's back office; so, for example, instead of asking a developer to edit the fixed text inside the page's template, a non-technical website editor can edit this passage him/herself.
 
+## Creating New Content
 
+As of this moment, the only page in the app is the index layout page. Even though the main nav contains a link pointing to a '/products' sessions, this session is unexistent still. Let's create it by running this terminal command in the project's root directory:
 
+```ruby
+bundle exec wagon generate content_type products title:string description:text
+```
+This will generate the "products" content type with two fields: title (a plain string) and description(a text, which is a string of longer size). The arguments that generates this initial set-up for the 'products' content is not required, it's just a convenient way of providing a basic initial set-up in the generated resources.
+The command will add two files to the project:
+- "app/content_types/products.yml": basic configuration file for products' pages. See file for a detailed overview of the configuration option (all of them are customizeable from the app's back-office admin area).
+- "data/products.yml": Data to be displayed in pages. The first 4 samples were auto-generated, the rest was added.
+
+The category's template file must be manually created and its content's filled in 'app/views/pages/products.liquid' .
+Take a look at this file. You'll notice a very similar structure to 'app/views/pages/index.liquid' ; however, there are some differences.
+
+See the '{% extends parent %}' Liquid tag for example. In Locomotive, all page templates are part of an inheritance tree, the base being 'index.liquid'. This tag makes the page a copy of its parent by default, so for instance if 'products.liquid' was totally blank except for the YAML at the top and the '{% extends parent %}' tag, the page would look exactly like its parent except for any fields that might be populated with a {{ page.title }}, which would be overriden by the title defined in the child page.
+The new content for the child page can be unique and not merely a copy of its parent's due to the "main" block defined inside it. The content inside of a child page's 'main' block overrides the one defined in its parent's "main" block, so the content of the "products.liquid" page will be defined inside the page's own "main" block instead of just copying the whole content of "index.liquid".
+
+Inside of 'products.liquid' "main" block we have a 'for' loop (note that the loop is closed by a "endfor" tag instead of a regular "end") that iterates through the attribute "products" of "contents". "contents" is a default Locomotive variable with a global scope and accesses the content defined inside of the "app/content_types" directory. Each looping will access the attributes "title" and "description" of the product being currently iterated on and output each attribute's content in the space defined in the "products.liquid" file.
+Also note that "title" is a default attribute name in LocomotiveCMS and will render the content of the string defined after the score "-" in "data/products.yml" (the first product will have the title of "Sample 1", for example).
+
+Since "products.liquid" is a child of "index.liquid", the display of "products.liquid" will contain everything defined in "index.liquid", except for any YAML attributes overriden in the top of the child page (such as 'title') and the content of "index"'s "main" block.
+
+Also note that any CSS or Javascript can be pointed from a child page and also override its parent's front-end.
+
+ 

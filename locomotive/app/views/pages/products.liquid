@@ -1,0 +1,16 @@
+---
+title: Products
+---
+{% extends parent %}
+{% block 'main' %}
+	{% for product in contents.products %}
+		<div class="product">
+			<h2>
+				{{ product.title }}
+			</h2>
+			<p>
+				{{ product.description }}
+			</p>
+		</div>
+	{% endfor %}
+{% endblock %}
