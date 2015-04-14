@@ -16,3 +16,29 @@ If you are working in an already set-up machine (with Ruby, Rails, RubyGems and 
 ```ruby
 gem install locomotivecms_wagon
 ```
+
+## Post-Install Steps
+To create a new app, run '$wagon init your_app_name' on the terminal, of course replacing 'your_app_name' by the name you want to give to your app (note that that is the command which will generate the initial project folder, NOT '$rails new your_app_name'). Near the end of the generation of files, the terminal will stop the execution to ask if you want to use HAML templates. Simply type 'yes' or 'no' to that question. After the initial generation process is finished, the terminal will output some commands to get you started:
+```ruby
+cd ./loco_try # go to your app's directory (even though I've changed the directory's name to "locomotive", I've initialized it with the 'loco_try' name).
+bundle install # in your app's directory, run 'bundle install' to finish the installation of the app's dependencies.
+bundle exec wagon serve # wagon's equivalent to 'bundle exec rails server'
+open http://0.0.0.0:3333 # opens the given host at your default browser. Note that while Rails operates in localhost:3000, wagon operates in localhost:3333 (or 0.0.0.0:3333 , whatever).
+```
+After running the app in the local computer's server for the first time, you should be redirected to a default generated view located in 'app/views/pages/index.liquid' . Now, why does it end with '.liquid'?
+
+####LiquidMarkup
+
+Liquid is another code-rendering-in-html such as ERB and HAML. It is a dependency of Wagon, so it should be understood to use Locomotive. However, it is very simple. To briefly give an idea, the following two code snippets are equivalent:
+
+######ERB:
+```ruby
+<% final_verdict = "sucks" %>
+<h1 class="website_verdict">This website <strong><%= final_verdict %></strong>.</h1>
+```
+######LiquidMarkup:
+```ruby
+{% final_verdict = "sucks" %}
+<h1 class="website_verdict">This website <strong>{{ final_verdict }}</strong>.</h1>
+```
+So '{{ }}' are "output code" tags and '{% %}' are "background page logic" tags. See this repo's 'app/views/pages/index.liquid' for a more complete demonstration. Liquid's official website: http://liquidmarkup.org/
