@@ -1,19 +1,21 @@
----
-title: Home page
-published: true
----
+---title: Welcome to Acme---
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title>{{ site.name }}</title>
-    <meta name="keywords" value="{{ site.meta_keywords }}" />
-    <meta name="description" value="{{ site.meta_description }}" />
-  </head>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>{{ page.title }} | {{ site.name }}</title>
+  {{ 'styles.css' | stylesheet_tag }}
+</head>
   <body>
-    <h1>{{ page.title }}</h1>
-    {% block 'main' %}
-    <p>Lorem ipsum....</p>
-    {% endblock %}
+    <div id="logo">
+      <img src="{{ 'logo.png' | theme_image_url }}" alt="Acme" />
+    </div>
+    <nav id="main-nav"><a href="/">Home</a><a href="/products">Products</a></nav>
+    <div id="content">
+      <h1>{{ page.title }}</h1>
+      {% block 'main' %}
+      <p>{% editable_text "welcome_message" %}Welcome to Acme, the world's favorite cartoon company. {% endeditable_text %}</p>
+      {% endblock %}
+    </div>
   </body>
 </html>
