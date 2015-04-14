@@ -1,0 +1,67 @@
+# Logfile created on 2015-04-14 19:11:26 -0300 by logger.rb/1.2.8
+[0;31;49m[Important] YUICompressor requires java to be installed. The JAVA_HOME variable should also be set.
+[0m
+[0;97;49mStarted GET "/" at 2015-04-14 19:11:44 -0300[0m
+Detecting locale EN
+Found page "Welcome to Acme" [index]
+  Rendered liquid page template
+[0;32;49mCompleted 200 OK in 3.2ms
+
+[0m
+[0;97;49mStarted GET "/products" at 2015-04-14 19:11:47 -0300[0m
+Detecting locale EN
+[0;32;49mCompleted 404 Not Found in 2.0ms
+
+[0m
+[0;97;49mStarted GET "/" at 2015-04-14 19:11:48 -0300[0m
+Detecting locale EN
+Found page "Welcome to Acme" [index]
+  Rendered liquid page template
+[0;32;49mCompleted 200 OK in 1.9ms
+
+[0m
+[0;97;49mStarted GET "/" at 2015-04-14 19:13:10 -0300[0m
+Detecting locale EN
+Found page "Welcome to Acme" [index]
+  Rendered liquid page template
+[0;32;49mCompleted 200 OK in 19.6ms
+
+[0m
+* Reloaded "pages", "snippets" at 2015-04-14 19:13:20 -0300
+[0;97;49mStarted GET "/" at 2015-04-14 19:13:21 -0300[0m
+Detecting locale EN
+Found page "Welcome to Acme" [index]
+  Rendered liquid page template
+[0;32;49mCompleted 200 OK in 1.1ms
+
+[0m
+[0;31;49m[Important] YUICompressor requires java to be installed. The JAVA_HOME variable should also be set.
+[0m
+[0;97;49mStarted GET "/" at 2015-04-14 19:14:02 -0300[0m
+Detecting locale EN
+Found page "Welcome to Acme" [index]
+  Rendered liquid page template
+[0;32;49mCompleted 200 OK in 3.4ms
+
+[0m
+[0;97;49mStarted GET "/" at 2015-04-14 19:14:14 -0300[0m
+Detecting locale EN
+Found page "Welcome to Acme" [index]
+  Rendered liquid page template
+[0;32;49mCompleted 200 OK in 1.8ms
+
+[0m
+[0;97;49mStarted GET "/" at 2015-04-14 19:14:17 -0300[0m
+Detecting locale EN
+Found page "Welcome to Acme" [index]
+  Rendered liquid page template
+[0;32;49mCompleted 200 OK in 1.2ms
+
+[0m
+[0;97;49mStarted GET "/" at 2015-04-14 19:14:25 -0300[0m
+Detecting locale EN
+Found page "Welcome to Acme" [index]
+  Rendered liquid page template
+[0;32;49mCompleted 200 OK in 16.3ms
+
+[0m

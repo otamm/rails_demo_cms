@@ -1,0 +1,9 @@
+body { 
+  text-align: center 
+}
+#logo, #main-nav, #content {
+  width:600px; margin:10px auto; 
+}
+#content { 
+  text-align: left; 
+}
