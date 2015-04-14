@@ -1,5 +1,10 @@
 #Locomotive
+
 Official documentation: http://doc.locomotivecms.com/
+
+Dependant on ImageMagick, Ruby 1.9.3 (or higher versions) and MongoDB. Rails3.x is also listed as a dependency but my computer doesn't have it and everything in Wagon ran without problems. If it is a dependency for the Engine, maybe the local server should have it?
+
+Gem version is automatically provided (v 1.5.4 as of today, 14/04/2015)
 Locomotive is architechted in two ways, having the 'Engine' and the 'Wagon' parts: 
 
 #### Engine
@@ -93,5 +98,11 @@ Also note that "title" is a default attribute name in LocomotiveCMS and will ren
 Since "products.liquid" is a child of "index.liquid", the display of "products.liquid" will contain everything defined in "index.liquid", except for any YAML attributes overriden in the top of the child page (such as 'title') and the content of "index"'s "main" block.
 
 Also note that any CSS or Javascript can be pointed from a child page and also override its parent's front-end.
+
+## Further Documentation
+
+#### Launching LocomotiveCMS into Production: http://doc.locomotivecms.com/get-started/engine-in-production
+
+#### Setting-up LocomotiveCMS into a local server: http://doc.locomotivecms.com/get-started/install-engine-locally
 
  
